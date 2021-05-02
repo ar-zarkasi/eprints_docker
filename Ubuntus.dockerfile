@@ -43,7 +43,7 @@ RUN chmod 664 /var/ssl/archiveid.conf
 RUN cd /var/ssl
 RUN apt-get install -y curl
 RUN cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
-RUN echo "ServerName localhost" > /etc/apache2/apache2.conf
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 #RUN openssl genrsa -des3 -out rootCA.key 4096
 #RUN openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
 #RUN openssl req -new -sha256 -nodes -out server.csr -newkey rsa:2048 -keyout server.key -config <( cat server.csr.cnf )
