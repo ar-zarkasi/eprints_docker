@@ -1,6 +1,7 @@
 HOW TO USE it
 # important: YOU MUST HAVE A DOCKER ENGINE IN YOUR ENVIRONMENT
 # note : this repository not contain mysql host, make sure you have mysql server on another container or host
+# before start please copy docker-compose-{system are you using}.yml to docker-compose.yml
 
 1. Using Terminal/command prompt type:
 <span>docker-compose up -d</span>
