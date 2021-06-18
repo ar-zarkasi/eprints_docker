@@ -1,0 +1,17 @@
+version: "3"
+services:
+  eprints:
+    build:
+      context: .
+      dockerfile: Ubuntus.dockerfile
+      args:
+        EPRINTS_HOSTNAME: localhost
+    ports:
+      - "8081:80"
+      - "3336:3306"
+      - "8084:443"
+    container_name: eprintsrepo
+    volumes:
+      - /usr/local/var/www/eprints:/usr/share/eprints/archives
+    stdin_open: true
+    tty: true
