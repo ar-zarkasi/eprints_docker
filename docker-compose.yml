@@ -12,7 +12,14 @@ services:
       - "8084:443"
     container_name: eprintsrepo
     volumes:
-      - eprints:/usr/share/eprints
+      - type: volume
+        source: eprints
+        target: /usr/share/eprints
+        volume:
+          nocopy: true
+      - type: bind
+        source: /e/laragon/www/docker/volumes
+        target: /usr/share/eprints/archives
     stdin_open: true
     tty: true
 volumes:

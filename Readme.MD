@@ -21,8 +21,22 @@ HOW TO USE it
 <code># a2dissite 000-default</code>
 <code># service apache2 reload</code>
 6. Please Access your repository via curl command
+(Optional)
+7. if want to use SSL (as a root user and still inside container terminal)
+<code>cd /var/ssl</code>
+<code>openssl genrsa -des3 -out rootCA.key 4096</code>
+<code>openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem</code>
+<code>openssl req -new -sha256 -nodes -out server.csr -newkey rsa:2048 -keyout server.key -config <( cat server.csr.cnf )</code>
+<code>openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 500 -sha256 -extfile v3.ext</code>
+8. change archiveid and domain url first in /var/ssl/archiveid.conf
+9. As a Eprints user, Copy config in eprints config file 
+    <code>cp /var/ssl/archiveid.conf /usr/share/eprints/cfg/apache_ssl/{archive_id}.conf</code>
+10. Back to as root
+<code>echo "Include /usr/share/eprints/cfg/apache_ssl.conf" >> /etc/apache2/sites-available/eprints.conf</code>
+11. Last execute command:
+<code>service apache2 reload</code>
 
-
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 <h3>USING HTTPS</h3>
 if you're using https when configure eprints in first step, 

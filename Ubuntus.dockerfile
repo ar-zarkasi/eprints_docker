@@ -44,11 +44,4 @@ RUN cd /var/ssl
 RUN apt-get install -y curl
 RUN cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-#RUN openssl genrsa -des3 -out rootCA.key 4096
-#RUN openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
-#RUN openssl req -new -sha256 -nodes -out server.csr -newkey rsa:2048 -keyout server.key -config <( cat server.csr.cnf )
-#RUN openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 500 -sha256 -extfile v3.ext
-#RUN cd /usr/share/eprints
-#RUN su eprints
-#RUN ./bin/epadmin create pub
 CMD ["apachectl", "-D", "FOREGROUND"]
